@@ -14,10 +14,15 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.home');
-});
-
+/* Rotta che gestisce la homepage visibile agli utenti */
+Route::get('/', 'HomeController@index')->name('index');
+    
+/* Serie di rotte che gestisce tutto il meccanismo di autenticazione */
 Auth::routes();
 
-Route::get('/admin', 'HomeController@index')->name('admin');
+/* Serie di rotte che gestisce il backoffice */
+Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')
+    ->group(function() {
+        //pagine di atterraggio dopo il login (con il prefix, l'url è /admin)
+        Route::get('/', 'HomeController@index')->name('index');
+    });
