@@ -6,6 +6,12 @@
             <li><a href="{{ route('admin.posts.show', $post->id)}}">{{ $post->title}}</a></li>
         @endforeach
     </ul> --}}
+    {{-- Messaggio stato del testo> --}}
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status')}}
+        </div>
+    @endif
     {{-- table --}}
     <table class="table table-striped">
         <thead>
@@ -29,10 +35,10 @@
                         <a href="{{ route('admin.posts.edit', $post->id)}}" class="btn btn-warning">
                             Modify
                         </a>
-                        <form class="delete-post-form" style="display: inline" method="post" action="">
+                        <form class="delete-post-form" style="display: inline" method="post" action="{{ route('admin.posts.destroy', $post->id) }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger"> Delete</button>
+                            <button onclick="" type="submit" class="btn btn-danger"> Delete</button>
                         </form>
                     </td>
                 </tr>

@@ -39,6 +39,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // Per prima cosa valido i dati che arrivano dal form
+        $request->validate([
+            'title'=> 'required|max:255',
+            'content' => 'required'
+        ]);
         $form_data = $request->all();
 
         $new_post = new Post();
@@ -102,6 +107,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        // Per prima cosa valido i dati che arrivano dal form
+        $request->validate([
+            'title'=> 'required|max:255',
+            'content' => 'required'
+        ]);
         $form_data = $request->all();
 
         //Verifico se il titolo ricevuto dal form è diverso dal vechhio
@@ -110,6 +120,7 @@ class PostController extends Controller
 
             $slug = Str::slug( $form_data['title'], '-');
 
+            /* Select from posts where slug = $slug */
             $slug_presente = Post::where('slug', $slug)->first();
         
             $contatore = 1;
@@ -134,9 +145,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index')->with('deleted', 'Post eliminato');
     }
 }
 
