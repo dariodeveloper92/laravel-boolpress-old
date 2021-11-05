@@ -84,9 +84,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        if(!$post) {
+            abort(404);
+        }
+
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -96,9 +100,32 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $form_data = $request->all();
+
+        //Verifico se il titolo ricevuto dal form è diverso dal vechhio
+        if ($form_data['title'] != $post->title) {
+            // è stato modificato il titolo, quindi devo modificare anche lo slug
+
+            $slug = Str::slug( $form_data['title'], '-');
+
+            $slug_presente = Post::where('slug', $slug)->first();
+        
+            $contatore = 1;
+            // fin tanto che lo slug esiste me ne creerai uno nuovo
+            while($slug_presente) {
+                $slug = $slug . '-' . $contatore;
+                $slug_presente = Post::where('slug', $slug)->fisrt();
+                $contatore++;
+            }
+
+            $form_data['slug'] = $slug;
+        }
+
+        $post->update($form_data);
+
+        return redirect()->route('admin.posts.index')->with('update', 'Post correttamente aggiornato');
     }
 
     /**
