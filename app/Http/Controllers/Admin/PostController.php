@@ -17,8 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.posts.index', compact('posts'));
-
+        return view('guest.posts.index', compact('posts'));
     }
 
     /**
@@ -136,7 +135,7 @@ class PostController extends Controller
 
         $post->update($form_data);
 
-        return redirect()->route('admin.posts.index')->with('update', 'Post correttamente aggiornato');
+        return redirect()->route('admin.posts.index')->with('status', 'Post correttamente aggiornato');
     }
 
     /**
