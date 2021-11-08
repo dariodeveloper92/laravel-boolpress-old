@@ -74,13 +74,13 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show(Post $post)
     {
-        dd($id);
-        if (!$id) {
+        dd($post);
+        if (!$post) {
             abort(404);
         }
         
@@ -90,7 +90,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -98,8 +98,14 @@ class PostController extends Controller
         if(!$post) {
             abort(404);
         }
+        $categories = Category::all();
 
-        return view('admin.posts.edit', compact('post'));
+        // $data = [
+        //     'post' => $post,
+        //     'categories' => $categories
+        // ]
+
+        return view('admin.posts.edit', compact('post'. 'categories'));
     }
 
     /**

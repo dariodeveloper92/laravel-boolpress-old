@@ -1,11 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    {{-- <ul>
-        @foreach ($posts as $post)
-            <li><a href="{{ route('admin.posts.show', $post->id)}}">{{ $post->title}}</a></li>
-        @endforeach
-    </ul> --}}
     {{-- Messaggio stato del testo> --}}
     @if (session('status'))
         <div class="alert alert-success">
@@ -26,16 +21,16 @@
             @foreach ($categories as $category)
                 <tr>
                     <td scope="row">{{ $category['id'] }}</td>
-                    <td>{{ $category['title'] }}</td>
-                    <td>{{ $category['Slug'] }}</td>
+                    <td>{{ $category['name'] }}</td>
+                    <td>{{ $category['slug'] }}</td>
                     <td>
-                        <a href="{{ route('admin.categories.show', $category->id)}}" class="btn btn-info">
+                        <a href="" class="btn btn-info">
                             Details
                         </a>
                         <a href="" class="btn btn-warning">
                             Modify
                         </a>
-                        <form class="d-inline-block delete-post" method="post" action="">
+                        <form class="d-inline-block delete-category" method="category" action="">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger"> Delete</button>

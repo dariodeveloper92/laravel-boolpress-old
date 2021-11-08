@@ -9,7 +9,7 @@
             <p>{!! $post->content !!}</p>
 
             <small>Lo slug è: {{ $post->slug }}</small><br>
-            <small>Categoria di appartenenza: <a href="{{route('admin.categories.show' $post->categoy->id)}}">{{$post->category->name}}</a></small>
+            <small>Categoria di appartenenza: <a href="{{route('admin.categories.show' $post->category->id)}}">{{$post->category->name}}</a></small>
         </div>
     </div>
 </div>
