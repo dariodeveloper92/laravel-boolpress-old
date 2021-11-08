@@ -90,7 +90,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Post $post
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -105,7 +105,7 @@ class PostController extends Controller
         //     'categories' => $categories
         // ]
 
-        return view('admin.posts.edit', compact('post'. 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
