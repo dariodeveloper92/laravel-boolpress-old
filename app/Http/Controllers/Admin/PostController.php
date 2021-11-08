@@ -18,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('guest.posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -74,21 +74,16 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Post $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(int $id)
     {
-        if (!$post) {
+        dd($id);
+        if (!$id) {
             abort(404);
         }
-
-        $categories = Category::all();
-
-        // $data = [
-        //     'post' => $post,
-        //     'categories' => $categories,
-        // ]
+        
         return view('admin.posts.show', compact('post'));
     }
 
