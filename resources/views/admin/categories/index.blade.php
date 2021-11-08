@@ -24,6 +24,8 @@
                     <td>{{ $category['name'] }}</td>
                     <td>{{ $category['slug'] }}</td>
                     <td>
+                        {{-- Modificare la Rotta perchè da errore --}}
+                        {{-- <a href="{{ route('admin.categories.show', $categories->id)}}" class="btn btn-info"> --}}
                         <a href="" class="btn btn-info">
                             Details
                         </a>

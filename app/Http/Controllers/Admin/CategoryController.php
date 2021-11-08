@@ -51,7 +51,7 @@ class CategoryController extends Controller
         if (!$category) {
             abort(404);
         }
-
+        
         return view('admin.categories.show', compact('category'));
     }
 
