@@ -79,7 +79,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        dd($post);
+        //dd($post);
         if (!$post) {
             abort(404);
         }
