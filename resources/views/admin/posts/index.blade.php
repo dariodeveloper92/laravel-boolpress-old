@@ -29,6 +29,11 @@
                     <td scope="row">{{ $post['id'] }}</td>
                     <td>{{ $post['title'] }}</td>
                     <td>{{ $post['Slug'] }}</td>
+                    <td>
+                        @if ($post->category)
+                            {{ $post->category->name}}
+                        @endif
+                    </td>
                     <td>{{ $post->category()->name }}</td>
                     <td>
                         <a href="{{ route('admin.posts.show', $post->id)}}" class="btn btn-info">
