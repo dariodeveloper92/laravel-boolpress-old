@@ -48,10 +48,16 @@
                     <p>Seleziona i tag:</p>
                     @foreach ($tags as $tag)
                     <div class="form-check form-check-inline">
-                        <input 
-                            {{ $post->tags->contains($tag) ? 'checked' : null }}
+                        @if ($error->any())
+                            <input 
+                            {{ in_array($tag->id, old('tags', [])) ? 'checked' : null }}
                             value="{{ $tag->id}}" id="{{ 'tag' . $tag->id }}" type="checkbox" name="tags[]" class="form-check-input">
-                        <label for="{{ 'tag' . $tag->id }}" class="form-check-label">{{ $tag->name}}</label>
+                            <label for="{{ 'tag' . $tag->id }}" class="form-check-label">{{ $tag->name}}</label>
+                        @else
+                            {{ $post->tags->contains($tag->id) ? 'checked' : null }}
+                            value="{{ $tag->id}}" id="{{ 'tag' . $tag->id }}" type="checkbox" name="tags[]" class="form-check-input">
+                            <label for="{{ 'tag' . $tag->id }}" class="form-check-label">{{ $tag->name}}</label>
+                        @endif
                     </div>
                     @endforeach
                 </div>

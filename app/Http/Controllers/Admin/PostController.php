@@ -71,7 +71,7 @@ class PostController extends Controller
 
         $new_post->save();
         // Attach
-        $new_post->tags()->attach($form_data('tags'));
+        $new_post->tags()->attach($form_data['tags']);
 
         return redirect()->route('admin.posts.index')->with('inserted', 'Il post è stato correttamente salvato');
     }
@@ -127,8 +127,8 @@ class PostController extends Controller
         $request->validate([
             'title'=> 'required|max:255',
             'content' => 'required',
-            'category_id' => 'nullable|exists.categories.id',
-            'tags' => 'exists:tags,id'
+            'category_id' => 'nullable|exists:categories,id',
+             'tags' => 'exists:tags,id'
         ]);
         $form_data = $request->all();
 
@@ -153,8 +153,15 @@ class PostController extends Controller
         }
 
         $post->update($form_data);
-        // Sync
-        $post->tags()->sync($form_data['tags']);
+        
+        if(array_key_exists('tags', $form_data)) {
+            //Sync
+            $post->tags()->sync($form_data['tags']);
+        }
+        else
+        {
+            $post->tags()->sync([]);
+        }
 
         return redirect()->route('admin.posts.index')->with('status', 'Post correttamente aggiornato');
     }
