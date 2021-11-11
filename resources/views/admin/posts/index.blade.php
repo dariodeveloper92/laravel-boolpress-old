@@ -24,11 +24,11 @@
                     <td scope="row">{{ $post['id'] }}</td>
                     <td>{{ $post['title'] }}</td>
                     <td>{{ $post['slug'] }}</td>
-                    {{-- <td>
+                    <td>
                         @if ($post->category)
                             {{ $post->category->name}}
                         @endif
-                    </td> --}}
+                    </td>
                     <td>
                         <a href="{{ route('admin.posts.show', $post->id)}}" class="btn btn-info">
                             Details
