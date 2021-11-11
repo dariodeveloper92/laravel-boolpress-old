@@ -54,6 +54,7 @@
                             value="{{ $tag->id}}" id="{{ 'tag' . $tag->id }}" type="checkbox" name="tags[]" class="form-check-input">
                             <label for="{{ 'tag' . $tag->id }}" class="form-check-label">{{ $tag->name}}</label>
                         @else
+                            <input
                             {{ $post->tags->contains($tag->id) ? 'checked' : null }}
                             value="{{ $tag->id}}" id="{{ 'tag' . $tag->id }}" type="checkbox" name="tags[]" class="form-check-input">
                             <label for="{{ 'tag' . $tag->id }}" class="form-check-label">{{ $tag->name}}</label>
