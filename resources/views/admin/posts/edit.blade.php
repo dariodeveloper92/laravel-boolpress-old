@@ -48,7 +48,7 @@
                     <p>Seleziona i tag:</p>
                     @foreach ($tags as $tag)
                     <div class="form-check form-check-inline">
-                        @if ($error->any())
+                        @if ($errors->any())
                             <input 
                             {{ in_array($tag->id, old('tags', [])) ? 'checked' : null }}
                             value="{{ $tag->id}}" id="{{ 'tag' . $tag->id }}" type="checkbox" name="tags[]" class="form-check-input">
