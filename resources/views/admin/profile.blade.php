@@ -11,6 +11,18 @@
                 <div class="card-body">
                     <div> {{ Auth::user()->name }}</div>
                     <div> {{ Auth::user()->email }}</div>
+                    @if (Auth::user()->api_token)
+                        <div> {{ Auth::user()->api_token }}</div>
+                    @else
+                        <form action="{{ route('admin.generate-token') }}" method="post">
+                            @csrf
+                            @method('POST')
+
+                            <button type="submit" class="btn btn-primary">
+                                Genera API Token
+                            </button>
+                        </form>
+                    @endif    
                 </div>
             </div>
         </div>
