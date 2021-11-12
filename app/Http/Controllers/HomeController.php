@@ -16,4 +16,9 @@ class HomeController extends Controller
     {
         return view('guest.home');
     }
+
+    public function listPostsApi()
+    {
+        return view('api.home');
+    }
 }

@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+/* http:/127.0.0.1/api/posts*/ 
+Route::get('/posts', 'Api/PostController@index');

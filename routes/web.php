@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Auth;
 /* Rotta che gestisce la homepage visibile agli utenti */
 Route::get('/', 'HomeController@index')->name('index');
 
+
+Route::get('/vue-posts', 'PostController@listPostsApi')->name('list-posts-api');
+
 /* Rotta che gestirà i post per l'utente generico */
 
 Route::resource('/posts', 'PostController');
