@@ -16,4 +16,10 @@ class HomeController extends Controller
     {
         return view('admin.home');
     }
+
+    public function profile()
+    {
+        
+        return view('admin.profile');
+    }
 }
